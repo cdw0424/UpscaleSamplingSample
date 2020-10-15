@@ -28,6 +28,9 @@ public class UpscaleSampling : MonoBehaviour
     /// <param name="scale">== ratio</param>
     public void CreateRT(float scale)
     {
+        // If there is a pre-made RT, release it.
+        ReleaseRT();
+
         // Generate RenderTexure according to the ratio
         mRatio = scale;
         int w = (int)((float)Screen.width * mRatio);
@@ -42,7 +45,6 @@ public class UpscaleSampling : MonoBehaviour
         RawImage raw = mCanvasForRT.GetComponentInChildren<RawImage>();
         raw.texture = mRt;
     }
-
 
     /// <summary>
     /// RT is unmanaged data, so release it.
